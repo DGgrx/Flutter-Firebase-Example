@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/services/auth.dart';
 import 'package:flutter_firebase/shared/constants.dart';
+import 'package:flutter_firebase/shared/loading.dart';
 
 
 
@@ -27,9 +28,12 @@ class _RegisterState extends State<Register> {
   String password = "";
   String error = "";
 
+  //loading Screen
+  bool loading = false;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading? Loading():Scaffold(
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -97,16 +101,17 @@ class _RegisterState extends State<Register> {
                         });
 
                         if(_formKey.currentState!.validate()){
+                          setState(()=>loading = true);
                                 dynamic result = await _auth.registerWithEmailandPass(email, password);
                                 if(result == null){
-                                  setState(()=> error = "Please check your email and password and try again !");
+                                  setState(() {
+                                    error =
+                                    "Please check your email and password and try again !";
+                                    _isButtonEnabled = true;
+                                    loading = false;
+                                  });
                                 }
                               }
-
-                        setState(() {
-                          _isButtonEnabled = true;
-                        });
-
                       }
                           : null,
                       style: ElevatedButton.styleFrom(
@@ -127,12 +132,16 @@ class _RegisterState extends State<Register> {
                     ),
                     Text(
                       error,
+                      textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.red
+                          color: Colors.red[600],
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.0
                       ),
                     ),
-                    const SizedBox(
-                      height: 240.0,
+                    SizedBox(
+                      height: error.isEmpty ? 240.0 : 215.0,
                     ),
                     TextButton(
                       onPressed: () {
