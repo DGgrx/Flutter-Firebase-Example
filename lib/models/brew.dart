@@ -1,8 +1,8 @@
 class Brew{
-  String? name;
-  String? sugar;
-  int? strength;
+  String name;
+  String sugar;
+  int strength;
 
-  Brew({this.strength,this.name,this.sugar});
+  Brew({required this.strength,required this.name,required this.sugar});
 
 }

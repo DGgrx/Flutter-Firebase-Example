@@ -10,5 +10,12 @@ InputDecoration textInputDecoration(String hintText) {
               BorderSide(color: Colors.white.withOpacity(0.1), width: 2.0)),
       focusedBorder: OutlineInputBorder(
           borderSide:
-              BorderSide(color: Colors.brown.withOpacity(0.3), width: 2.0)));
+              BorderSide(color: Colors.brown.withOpacity(0.3), width: 2.0)),
+      focusedErrorBorder: OutlineInputBorder(
+          borderSide:
+          BorderSide(color: Colors.brown.withOpacity(0.3), width: 2.0)),
+      errorBorder: OutlineInputBorder(
+          borderSide:
+          BorderSide(color: Colors.brown.withOpacity(0.3), width: 2.0))
+  );
 }
