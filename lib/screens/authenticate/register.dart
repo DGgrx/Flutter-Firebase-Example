@@ -18,7 +18,6 @@ class Register extends StatefulWidget {
 class _RegisterState extends State<Register> {
 
   final AuthService _auth = AuthService();
-  bool _isButtonEnabled = true;
   final _formKey = GlobalKey<FormState>();
 
   //Regex
@@ -33,7 +32,7 @@ class _RegisterState extends State<Register> {
 
   @override
   Widget build(BuildContext context) {
-    return loading? Loading():Scaffold(
+    return loading?const Loading():Scaffold(
       resizeToAvoidBottomInset: false,
       extendBodyBehindAppBar: true,
       appBar: AppBar(
@@ -93,12 +92,7 @@ class _RegisterState extends State<Register> {
                       height: 20.0,
                     ),
                     ElevatedButton.icon(
-                      onPressed: _isButtonEnabled
-                          ? () async {
-
-                        setState(() {
-                          _isButtonEnabled = false;
-                        });
+                      onPressed: () async {
 
                         if(_formKey.currentState!.validate()){
                           setState(()=>loading = true);
@@ -107,18 +101,18 @@ class _RegisterState extends State<Register> {
                                   setState(() {
                                     error =
                                     "Please check your email and password and try again !";
-                                    _isButtonEnabled = true;
+                                    
                                     loading = false;
                                   });
                                 }
                               }
                       }
-                          : null,
+                      ,
                       style: ElevatedButton.styleFrom(
                           padding: const EdgeInsets.all(13.0),
                           primary: Colors.brown[400]
                       ),
-                      icon: Icon(Icons.person_add_alt_1)
+                      icon:const Icon(Icons.person_add_alt_1)
                       ,
                       label: const Text(
                         "Register",

@@ -14,7 +14,6 @@ class SignIn extends StatefulWidget {
 
 class _SignInState extends State<SignIn> {
   final AuthService _auth = AuthService();
-  bool _isButtonEnabled = true;
   final _formKey = GlobalKey<FormState>();
 
   //regex
@@ -31,7 +30,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return loading
-        ? Loading()
+        ? const Loading()
         : Scaffold(
             resizeToAvoidBottomInset: false,
             extendBodyBehindAppBar: true,
@@ -91,11 +90,8 @@ class _SignInState extends State<SignIn> {
                           height: 20.0,
                         ),
                         ElevatedButton.icon(
-                          onPressed: _isButtonEnabled
-                              ? () async {
-                                  setState(() {
-                                    _isButtonEnabled = false;
-                                  });
+                          onPressed: () async {
+                                  
 
                                   if (_formKey.currentState!.validate()) {
                                     setState(() => loading = true);
@@ -106,17 +102,17 @@ class _SignInState extends State<SignIn> {
                                       setState(() {
                                         error =
                                             "Please check your email and password and try again !";
-                                        _isButtonEnabled = true;
+                                        
                                         loading = false;
                                       });
                                     }
                                   }
                                 }
-                              : null,
+                              ,
                           style: ElevatedButton.styleFrom(
                               padding: const EdgeInsets.all(13.0),
                               primary: Colors.brown[400]),
-                          icon: Icon(Icons.login_outlined),
+                          icon:const Icon(Icons.login_outlined),
                           label: const Text(
                             "Sign In",
                             style: TextStyle(
