@@ -8,4 +8,4 @@ Keeps track of the coffee details like sugar, dark or light and the name of the 
 
 ## Preview
 
-
+<img src="https://github.com/DGgrx/Flutter-Firebase-Example/blob/master/preview_app.gif" height="400" />
